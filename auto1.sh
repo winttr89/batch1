@@ -1,10 +1,10 @@
 #!/bin/bash
-sub="2157f2f7-c85f-496a-bb7f-61048e704c39"
+sub="ed6e028e-1012-44eb-9360-cc58ac9c8d7f"
 ran=`head /dev/urandom | tr -dc a-z0-9 | fold -w 3 | head -n 1`
 wget -O batch.json https://raw.githubusercontent.com/winttr89/batch1/main/batch.json
 wget -O batch2.json https://raw.githubusercontent.com/winttr89/batch1/main/batch2.json
-az group create --name batchacc$ran --location westus2 --subscription "$sub"
 az provider register --namespace Microsoft.Batch --subscription "$sub"
+az group create --name batchacc$ran --location westus2 --subscription "$sub"
 nnn=`head /dev/urandom | tr -dc a-z0-9 | fold -w 14 | head -n 1`
 batch=0
 for region in australiaeast canadacentral centralindia centralus eastus eastus2 francecentral germanywestcentral japaneast koreacentral northeurope southcentralus southeastasia switzerlandnorth uksouth westcentralus westeurope westus westus2 westus3

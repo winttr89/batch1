@@ -1,10 +1,10 @@
 #!/bin/bash
-sub="e7c94270-96ec-4ff8-a05b-2b341688badf"
+sub="8cb7d7e9-98cd-4b40-a9cc-2a6ae89e0ec3"
 ran=`head /dev/urandom | tr -dc a-z0-9 | fold -w 3 | head -n 1`
 wget -O batch.json https://raw.githubusercontent.com/winttr89/batch1/main/batch.json
 wget -O batch2.json https://raw.githubusercontent.com/winttr89/batch1/main/batch2.json
-az group create --name batchacc$ran --location westus2 --subscription "$sub"
 az provider register --namespace Microsoft.Batch --subscription "$sub"
+az group create --name batchacc$ran --location westus2 --subscription "$sub"
 nnn=`head /dev/urandom | tr -dc a-z0-9 | fold -w 14 | head -n 1`
 batch=0
 for region in australiaeast canadacentral centralindia centralus eastus eastus2 francecentral germanywestcentral japaneast koreacentral northeurope southcentralus southeastasia switzerlandnorth uksouth westcentralus westeurope westus westus2 westus3
@@ -13,8 +13,8 @@ do
 	batch=$(( $batch + 1 ))
 	az batch account create --subscription "$sub" --name a$batch$nnn --resource-group batchacc$ran --location $region --no-wait
 done
-echo "Sleep 4m..."
-sleep 4m
+echo "Sleep 3m..."
+sleep 3m
 batch=0
 echo "Batch account setting..."
 for region in australiaeast canadacentral centralindia centralus eastus eastus2 francecentral germanywestcentral japaneast koreacentral northeurope southcentralus southeastasia switzerlandnorth uksouth westcentralus westeurope westus westus2 westus3
