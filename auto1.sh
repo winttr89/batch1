@@ -15,7 +15,7 @@ do
 	batch=$(( $batch + 1 ))
 	az batch account create --subscription "$sub" --name a$batch$nnn --resource-group batchacc$ran --location $region --no-wait
 done
-echo "sleep 2m..."
+echo "sleep 10s..."
 sleep 2m
 batch=0
 echo "Batch account setting..."
